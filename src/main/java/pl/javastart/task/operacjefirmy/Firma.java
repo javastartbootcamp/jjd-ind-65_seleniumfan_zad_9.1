@@ -1,4 +1,11 @@
-package pl.javastart.task;
+package pl.javastart.task.operacjefirmy;
+
+import pl.javastart.task.finanse.FinanseFirmy;
+import pl.javastart.task.finanse.Przychod;
+import pl.javastart.task.finanse.Wydatek;
+import pl.javastart.task.formyopodatkowania.FormaOpodatkowania;
+
+import java.util.List;
 
 public class Firma {
 
@@ -14,7 +21,7 @@ public class Firma {
         double sumaPrzychodow = zsumujPrzychody();
 
         System.out.printf("======= Firma: %s ===========\n", nazwa);
-        System.out.printf("Forma opodatkowania: %s\n", "TODO");
+        System.out.printf("Forma opodatkowania: %s\n", formaOpodatkowania.drukujFormeOpodatkowania());
         System.out.printf("Suma przychodów: %.2f zł\n", sumaPrzychodow);
         System.out.printf("Suma wydatków: %.2f zł\n", zsumujWydatki());
         System.out.printf("Podatek do zapłacenia: %.2f zł", formaOpodatkowania.wyliczPodatek(sumaPrzychodow));
@@ -22,18 +29,26 @@ public class Firma {
     }
 
     private double zsumujWydatki() {
-        return 0;
+        return zsumujFinanseFirmy(formaOpodatkowania.pobierzWydatki());
     }
 
     private double zsumujPrzychody() {
-        return 0;
+        return zsumujFinanseFirmy(formaOpodatkowania.pobierzPrzychody());
+    }
+
+    private double zsumujFinanseFirmy(List<? extends FinanseFirmy> finanseFirmy) {
+        double sum = 0;
+        for (FinanseFirmy ff : finanseFirmy) {
+            sum += ff.getWartosc();
+        }
+        return sum;
     }
 
     public void dodajPrzychod(String nazwa, double wartosc) {
-        // TODO
+        formaOpodatkowania.ustawPrzychody(new Przychod(nazwa, wartosc));
     }
 
     public void dodajWydatek(String nazwa, double wartosc) {
-        // TODO
+        formaOpodatkowania.dodajWydatki(new Wydatek(nazwa, wartosc));
     }
 }
