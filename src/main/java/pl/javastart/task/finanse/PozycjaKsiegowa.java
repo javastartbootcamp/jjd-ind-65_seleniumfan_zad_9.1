@@ -1,10 +1,10 @@
 package pl.javastart.task.finanse;
 
-public class FinanseFirmy {
+public class PozycjaKsiegowa {
     private String name;
     private double wartosc;
 
-    public FinanseFirmy(String name, double wartosc) {
+    public PozycjaKsiegowa(String name, double wartosc) {
         this.name = name;
         this.wartosc = wartosc;
     }

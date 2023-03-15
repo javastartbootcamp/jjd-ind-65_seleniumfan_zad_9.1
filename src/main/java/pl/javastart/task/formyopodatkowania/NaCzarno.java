@@ -2,7 +2,7 @@ package pl.javastart.task.formyopodatkowania;
 
 public class NaCzarno extends FormaOpodatkowania {
     @Override
-    public double wyliczPodatek(double przychody) {
+    public double wyliczPodatek(double przychody, double wydatki) {
         return 0;
     }
 
